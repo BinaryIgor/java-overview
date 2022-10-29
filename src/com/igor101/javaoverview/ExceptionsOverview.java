@@ -3,7 +3,11 @@ package com.igor101.javaoverview;
 import java.util.List;
 
 public class ExceptionsOverview {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        if (args.length > 0) {
+            throw new Exception("Checked exception!");
+        }
+
         try {
             throw new CustomException("Some exception");
         } catch (Exception e) {
