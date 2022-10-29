@@ -14,7 +14,7 @@ public class FilesOverview {
 
         var textFilePath = "/tmp/tmp_file.txt";
 
-        var binaryFilePath = "files/forest.jpg";
+        var binaryFilePath = args.length > 0 ? args[0] : "files/forest.jpg";
 
         var dirPath = "/tmp/dir";
 
