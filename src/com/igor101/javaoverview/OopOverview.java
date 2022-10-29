@@ -1,9 +1,6 @@
 package com.igor101.javaoverview;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Objects;
+import java.util.*;
 
 public class OopOverview {
     public static void main(String[] args) {
@@ -23,16 +20,16 @@ public class OopOverview {
         usersMap.put(u1, "a");
         usersMap.put(u2, "b");
         usersMap.put(new User(2, "another user"), "c");
-        System.out.printf("Users map: %s%n", usersMap);
+        System.out.printf("Users map: %s\n", usersMap);
 
         var usersSet = new LinkedHashSet<User>();
         usersSet.add(u1);
         usersSet.add(u2);
         usersSet.add(new User(3, "different user"));
-        System.out.printf("Users set: %s%n", usersMap);
+        System.out.printf("Users set: %s\n", usersMap);
         System.out.println();
 
-        System.out.printf("Immutable user: %s%n",
+        System.out.printf("Immutable user: %s\n",
                 new ImmutableUser(1, "ala"));
 
         if (new ImmutableUser(1, "ala")
@@ -42,13 +39,19 @@ public class OopOverview {
         System.out.println();
 
         var triangle = new Triangle(1, 2, 2);
-        System.out.printf("Triangle (%s) perimeter: %d%n", triangle,
+        System.out.printf("Triangle (%s) perimeter: %d\n", triangle,
                 triangle.perimeter());
-        System.out.printf("Equilateral triangle: %s%n", Triangle.equilateral(2));
+        System.out.printf("Equilateral triangle: %s\n", Triangle.equilateral(2));
         System.out.println();
 
-        System.out.printf("All Gender enums: (%s)%n",
+        System.out.printf("All Gender enums: (%s)\n",
                 Arrays.toString(Gender.values()));
+        System.out.println();
+
+        UserRepository repository = new InMemoryUserRepository();
+        repository.create(new User(2, "new user"));
+        System.out.printf("User of id 2 = %s\n", repository.ofId(2));
+        System.out.printf("User of id 22 = %s\n", repository.ofId(22));
     }
 
     //static needed only because these are inner classes
@@ -146,5 +149,27 @@ public class OopOverview {
 
     enum Gender {
         MALE, FEMALE, OTHER
+    }
+
+    interface UserRepository {
+
+        void create(User user);
+
+        Optional<User> ofId(int userId);
+    }
+
+    static class InMemoryUserRepository implements UserRepository {
+
+        private final Map<Integer, User> users = new HashMap<>();
+
+        @Override
+        public void create(User user) {
+            users.put(user.id, user);
+        }
+
+        @Override
+        public Optional<User> ofId(int userId) {
+            return Optional.ofNullable(users.get(userId));
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.igor101.javaoverview;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
@@ -19,6 +20,7 @@ public class FunctionsOverview {
         variableArgsFunction();
         variableArgsFunction(2);
         variableArgsFunction(2, "two");
+        variableArgsFunction(List.of(2, "three"));
         variableArgsFunction(new Object[]{2, "three"});
 
         System.out.println("....");
@@ -34,13 +36,13 @@ public class FunctionsOverview {
     }
 
     static int add(int a, int b) {
-        System.out.printf("Calling add (%d, %d)!%n", a, b);
+        System.out.printf("Calling add (%d, %d)!\n", a, b);
         return a + b;
     }
 
     static int nestedAdd(int a, int b) {
         BiFunction<Integer, Integer, Integer> add = (x, y) -> x + y;
-        System.out.printf("Calling nested add (%d, %d)!%n", a, b);
+        System.out.printf("Calling nested add (%d, %d)!\n", a, b);
         return add.apply(a, b);
     }
 
@@ -49,7 +51,7 @@ public class FunctionsOverview {
     }
 
     static void defaultArgFunction(int a, Integer b) {
-        System.out.printf("Calling default arg function...%d, %d%n", a, b);
+        System.out.printf("Calling default arg function...%d, %d\n", a, b);
     }
 
     static void defaultArgFunction(int a) {
@@ -57,6 +59,6 @@ public class FunctionsOverview {
     }
 
     static void variableArgsFunction(Object...args) {
-        System.out.printf("Variable args function: %s%n", Arrays.toString(args));
+        System.out.printf("Variable args function: %s\n", Arrays.toString(args));
     }
 }

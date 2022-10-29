@@ -7,7 +7,7 @@ public class FlowControlOverview {
         String secondVar = "ala";
 
         print("firstVar: %d".formatted(firstVar));
-        System.out.printf("secondVar: %s%n", secondVar);
+        System.out.printf("secondVar: %s\n", secondVar);
 
         var ifVar = 3;
 
@@ -22,7 +22,7 @@ public class FlowControlOverview {
                 System.out.println("if var is 0");
             }
         } else {
-            System.out.printf("if is: %d%n", ifVar);
+            System.out.printf("if is: %d\n", ifVar);
         }
 
         System.out.println("For loop...");
@@ -31,7 +31,7 @@ public class FlowControlOverview {
             System.out.println(i);
 
             if (randomIntInRange(0, 10) == i) {
-                System.out.printf("Random same as %d index, breaking!%n", i);
+                System.out.printf("Random same as %d index, breaking!\n", i);
                 break;
             }
         }
@@ -58,12 +58,12 @@ public class FlowControlOverview {
                 System.out.println("Switched is 2");
                 break;
             default:
-                System.out.printf("Switched is %d%n", switched);
+                System.out.printf("Switched is %d\n", switched);
         }
 
         //ternary operator (one line if)
         var t = 3;
-        System.out.printf("Evaluating ternary operator (%d): (%d)",
+        System.out.printf("Evaluating ternary operator (%d): (%d)\n",
                 t, t > 0 ? 2 : 0);
     }
 
